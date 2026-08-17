@@ -1,0 +1,139 @@
+:root {
+  --dusk-1: #241634;
+  --dusk-2: #4d3a63;
+  --sunset: #ff9d5c;
+  --comb: #e63946;
+  --gold: #f4c430;
+  --cream: #fdf6e3;
+  --panel: rgba(43, 30, 61, 0.94);
+  --panel-line: rgba(255, 157, 92, 0.35);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--dusk-1); }
+body { font-family: 'Nunito', Arial, sans-serif; color: var(--cream); }
+h1, h2, h3, h4 { font-family: 'Baloo 2', 'Nunito', Arial, sans-serif; }
+
+#game { display: block; }
+
+button { font-family: 'Nunito', Arial, sans-serif; cursor: pointer; }
+input { font-family: 'Nunito', Arial, sans-serif; }
+
+/* ---------------- HUD ---------------- */
+#hud {
+  position: fixed; top: 14px; left: 14px; right: 14px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  pointer-events: none; z-index: 5;
+}
+#leaderboard {
+  background: var(--panel); border: 1px solid var(--panel-line);
+  padding: 10px 18px; border-radius: 12px; min-width: 190px;
+}
+#leaderboard h3 { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sunset); margin-bottom: 6px; }
+#leaderboard-list { list-style: decimal; padding-left: 18px; font-size: 13px; line-height: 1.6; color: var(--cream); }
+
+#hud-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+#score {
+  background: var(--panel); border: 1px solid var(--panel-line);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; font-weight: 700;
+}
+.power-badge {
+  padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 700;
+  background: rgba(0,0,0,0.4); border: 1px solid var(--panel-line);
+}
+.power-speed { color: #4dd0ff; border-color: #4dd0ff; }
+.power-radar { color: #4dd0ff; border-color: #4dd0ff; }
+.power-invincible { color: var(--gold); border-color: var(--gold); }
+
+#radar {
+  background: var(--panel); border: 1px solid var(--panel-line); border-radius: 12px;
+  padding: 8px; text-align: center;
+}
+#radar span { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sunset); margin-top: 4px; }
+
+.hidden { display: none !important; }
+
+/* ---------------- Menu / Death overlays ---------------- */
+#menu, #death-screen {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 20%, rgba(255,157,92,0.12), transparent 60%), rgba(10, 6, 18, 0.72);
+  z-index: 10; overflow-y: auto; padding: 24px 12px;
+}
+
+#menu-box, #death-box {
+  background: var(--panel); border: 1px solid var(--panel-line); border-radius: 20px;
+  padding: 30px 34px 26px; text-align: center; width: 100%; max-width: 380px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.brand { position: relative; margin-bottom: 4px; }
+.brand-comb {
+  display: block; width: 64px; height: 22px; margin: 0 auto -6px;
+  background: linear-gradient(180deg, var(--comb), #a8202c);
+  clip-path: polygon(10% 100%, 0% 30%, 20% 55%, 30% 10%, 45% 55%, 55% 0%, 70% 55%, 82% 10%, 100% 45%, 90% 100%);
+}
+#menu-box h1 { color: var(--cream); font-size: 30px; font-weight: 800; }
+#menu-box h1 span { color: var(--sunset); }
+.tagline { color: rgba(253,246,227,0.75); font-size: 13.5px; margin: 8px 0 18px; line-height: 1.5; }
+
+#account-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: rgba(0,0,0,0.25); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 13px;
+}
+#account-bar strong { color: var(--gold); }
+.link-btn { background: none; border: none; color: var(--sunset); font-size: 12px; text-decoration: underline; }
+
+#auth-form { margin-bottom: 14px; }
+#auth-form input {
+  width: 100%; padding: 10px 12px; border-radius: 8px; border: 1.5px solid var(--panel-line);
+  background: rgba(0,0,0,0.25); color: var(--cream); font-size: 13px; margin-bottom: 8px; outline: none;
+}
+#auth-form input::placeholder { color: rgba(253,246,227,0.45); }
+.auth-buttons { display: flex; gap: 8px; }
+.secondary-btn {
+  flex: 1; background: rgba(255,157,92,0.14); color: var(--sunset); border: 1.5px solid var(--panel-line);
+  padding: 9px 10px; border-radius: 8px; font-size: 13px; font-weight: 700; transition: background 0.15s;
+}
+.secondary-btn:hover { background: rgba(255,157,92,0.26); }
+.auth-status { font-size: 12px; color: var(--comb); min-height: 16px; margin-top: 6px; }
+
+#name-input {
+  width: 100%; padding: 11px 12px; border-radius: 8px; border: 2px solid var(--gold);
+  background: rgba(0,0,0,0.2); color: var(--cream); font-size: 14px; margin-bottom: 16px; outline: none;
+}
+#name-input::placeholder { color: rgba(253,246,227,0.4); }
+
+#customizer { margin-bottom: 16px; text-align: left; }
+#customizer h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sunset); margin-bottom: 10px; text-align: center; }
+.cust-layout { display: flex; gap: 14px; align-items: center; }
+#cust-preview { background: radial-gradient(circle, #6b8f3f 0%, #547a2e 100%); border-radius: 12px; flex-shrink: 0; }
+.cust-rows { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.cust-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 4px;
+  background: rgba(0,0,0,0.22); border-radius: 8px; padding: 5px 8px; font-size: 12px;
+}
+.cust-row .trait-label { color: rgba(253,246,227,0.6); }
+.cust-row .trait-value { flex: 1; text-align: center; font-weight: 700; text-transform: capitalize; color: var(--cream); }
+.cust-row button {
+  background: none; border: none; color: var(--gold); font-size: 15px; width: 20px; height: 20px; line-height: 1;
+}
+
+#play-btn, #respawn-btn {
+  width: 100%; background: linear-gradient(180deg, var(--sunset), #e0783a); color: #2a1610; border: none;
+  padding: 13px 28px; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer;
+  transition: transform 0.1s ease; box-shadow: 0 6px 0 #b25a26;
+}
+#play-btn:hover, #respawn-btn:hover { transform: translateY(-1px); }
+#play-btn:active, #respawn-btn:active { transform: translateY(3px); box-shadow: 0 3px 0 #b25a26; }
+
+.hint { font-size: 12px; color: rgba(253,246,227,0.55); margin-top: 12px; }
+.hint.small { font-size: 11px; margin-top: 8px; }
+
+#death-box h1 { color: var(--comb); margin-bottom: 10px; font-size: 26px; }
+#killed-by { color: var(--sunset); font-weight: 700; margin-bottom: 6px; }
+#final-score { margin-bottom: 18px; color: rgba(253,246,227,0.8); }
+
+@media (max-width: 420px) {
+  #menu-box, #death-box { padding: 22px 20px 20px; }
+  .cust-layout { flex-direction: column; }
+}
